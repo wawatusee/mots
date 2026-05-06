@@ -18,7 +18,10 @@ $index = isset($_GET['index']) ? (int)$_GET['index'] : $todayIndex;
 $index = max(0, min($index, $total - 1));
 
 $entry = $all[$index];
-
+// Choisir une image au hasard si plusieurs sont disponibles
+if (!empty($entry['images']) && count($entry['images']) > 1) {
+    $entry['images'] = [$entry['images'][array_rand($entry['images'])]];
+}
 $entryJsonJs = json_encode([
     'date'   => $entry['date'],
     'index'  => $index,
