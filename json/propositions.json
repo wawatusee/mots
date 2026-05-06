@@ -1,0 +1,34 @@
+{
+    "propositions": [
+        {
+            "date": "2026-01-04",
+            "mot": "tentacule",
+            "correct": false,
+            "timestamp": "2026-05-06 11:34:21"
+        },
+        {
+            "date": "2026-01-04",
+            "mot": "pain",
+            "correct": false,
+            "timestamp": "2026-05-06 11:34:28"
+        },
+        {
+            "date": "2026-01-04",
+            "mot": "main",
+            "correct": false,
+            "timestamp": "2026-05-06 11:34:38"
+        },
+        {
+            "date": "2026-01-04",
+            "mot": "nani",
+            "correct": false,
+            "timestamp": "2026-05-06 11:34:54"
+        },
+        {
+            "date": "2026-01-04",
+            "mot": "nain",
+            "correct": true,
+            "timestamp": "2026-05-06 11:34:59"
+        }
+    ]
+}

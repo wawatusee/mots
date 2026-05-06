@@ -1,0 +1,70 @@
+/* =============================================================
+   public/css/portrait.css
+   Styles spécifiques au format portrait des dessins.
+   Complète style.css sans le surcharger.
+   ============================================================= */
+
+/* L'image occupe toute la hauteur disponible de la colonne
+   tout en restant en format portrait (ratio 3:4)              */
+.col-drawing {
+  /* Empêche le dessin de déborder verticalement */
+  overflow: hidden;
+}
+
+.frame {
+  /* Hauteur max calée sur la colonne, ratio portrait respecté */
+  max-height: 100%;
+}
+
+.drawing-img {
+  aspect-ratio: 3 / 4;
+  width: auto;          /* ← largeur automatique selon la hauteur */
+  height: 100%;         /* ← prend toute la hauteur disponible */
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* --- Mobile : colonne débrief plus compacte ---------------- */
+@media (max-width: 480px) {
+  .mid-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .col-debrief {
+    padding: 8px 6px;
+    gap: 8px;
+  }
+
+  .attempt-word {
+    font-size: 11px;
+  }
+
+  .debrief-count {
+    font-size: 10px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .word-input {
+    font-size: 18px;
+  }
+}
+
+/* --- Très petit écran (< 360px) ---------------------------- */
+@media (max-width: 360px) {
+  .drawing-img {
+    max-height: 55dvh;
+  }
+
+  .word-input {
+    font-size: 16px;
+  }
+
+  .send-btn {
+    padding: 5px 9px;
+  }
+}
