@@ -19,7 +19,7 @@ function loadSession() {
 function saveSession(session) {
   try {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-  } catch {}
+  } catch { }
 }
 
 // État de la partie en cours
@@ -34,16 +34,16 @@ const state = session[dateKey];
 // -------------------------------------------------------------
 //  Éléments DOM
 // -------------------------------------------------------------
-const colDebrief  = document.getElementById('col-debrief');
-const bottomZone  = document.getElementById('bottom-zone');
-const hintLine    = document.getElementById('hint-line');
-const wordInput   = document.getElementById('word-input');
-const sendBtn     = document.getElementById('send-btn');
-const fbEl        = document.getElementById('fb');
-const tongueBtn   = document.getElementById('tongue-btn');
-const prevBtn     = document.getElementById('prev-btn');
-const nextBtn     = document.getElementById('next-btn');
-const centerSlot  = document.getElementById('center-slot');
+const colDebrief = document.getElementById('col-debrief');
+const bottomZone = document.getElementById('bottom-zone');
+const hintLine = document.getElementById('hint-line');
+const wordInput = document.getElementById('word-input');
+const sendBtn = document.getElementById('send-btn');
+const fbEl = document.getElementById('fb');
+const tongueBtn = document.getElementById('tongue-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const centerSlot = document.getElementById('center-slot');
 
 // -------------------------------------------------------------
 //  Rendu débrief (colonne droite)
@@ -91,7 +91,7 @@ function renderDebrief() {
 function renderDots(green, blue) {
   let h = '';
   for (let i = 0; i < green; i++) h += '<span class="dot green"></span>';
-  for (let i = 0; i < blue;  i++) h += '<span class="dot blue"></span>';
+  for (let i = 0; i < blue; i++) h += '<span class="dot blue"></span>';
   return h;
 }
 
@@ -107,7 +107,7 @@ function renderUI() {
   } else {
     bottomZone.style.display = '';
     wordInput.disabled = false;
-    sendBtn.disabled   = false;
+    sendBtn.disabled = false;
     wordInput.focus();
   }
 
@@ -117,6 +117,8 @@ function renderUI() {
   } else {
     nextBtn.classList.remove('visible');
   }
+
+
 
   // Slot central
   centerSlot.textContent = state.solved ? '✓ trouvé' : '';
@@ -142,20 +144,20 @@ async function submit() {
 
   // Désactiver pendant la requête
   wordInput.disabled = true;
-  sendBtn.disabled   = true;
+  sendBtn.disabled = true;
 
   try {
-    const res  = await fetch('/public/api/guess.php', {
-      method:  'POST',
+    const res = await fetch('/public/api/guess.php', {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ date: ENTRY.date, mot: raw }),
+      body: JSON.stringify({ date: ENTRY.date, mot: raw }),
     });
     const data = await res.json();
 
     state.attempts.push({
-      word:    raw,
+      word: raw,
       correct: data.correct,
-      scores:  data.scores,   // [{green, blue, total}, ...]
+      scores: data.scores,   // [{green, blue, total}, ...]
     });
     if (data.correct) state.solved = true;
     saveSession(session);
@@ -170,7 +172,7 @@ async function submit() {
     console.error(err);
     showFb('Erreur réseau, réessayez.', 'err');
     wordInput.disabled = false;
-    sendBtn.disabled   = false;
+    sendBtn.disabled = false;
   }
 }
 
@@ -182,6 +184,8 @@ function abandon() {
   saveSession(session);
   renderDebrief();
   renderUI();
+  // Attirer l'attention sur la navigation
+  centerSlot.textContent = '← essayez un autre dessin →';
 }
 
 // -------------------------------------------------------------
@@ -197,8 +201,8 @@ function goTo(index) {
 //  Feedback visuel
 // -------------------------------------------------------------
 function showFb(msg, type) {
-  fbEl.textContent  = msg;
-  fbEl.className    = 'fb ' + type;
+  fbEl.textContent = msg;
+  fbEl.className = 'fb ' + type;
 }
 
 // -------------------------------------------------------------

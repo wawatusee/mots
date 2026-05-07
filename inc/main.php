@@ -70,7 +70,7 @@
     </div>
     <div class="fb-row">
       <div class="fb" id="fb" role="status" aria-live="polite"></div>
-      <button class="tongue-btn" id="tongue-btn">langue au chat</button>
+      <button class="tongue-btn" id="tongue-btn">Abandon?</button>
     </div>
   </div>
 
